@@ -44,7 +44,6 @@ public class test{
 	        System.out.printf(num);
 	        in.close();
 	    }
-	   
 		
 		
 	}
