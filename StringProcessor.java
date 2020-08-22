@@ -1,8 +1,5 @@
 package testA;
 
-import java.util.ArrayList;
-
-import testA.test;
 
 public class StringProcessor extends Operation{
 	
@@ -69,7 +66,6 @@ public static int getKodOperation() {
 			if(-1!=getNum().indexOf(List.operation.get(io))) {
 			setKodOperation(io);
 			setMestoVStrokeOperation(getNum().indexOf(List.operation.get(getKodOperation())));
-			System.out.println(">>"+List.operation.get(io)+" mesto = "+ getMestoVStrokeOperation());
 			}
 		}
 		
@@ -101,25 +97,37 @@ return buf;
 	public boolean VerifyRime() {
 		boolean bufr=false, bufr1=false, bufr2=false;
 		
-		for (int ei=0; ei<=List.rime.size()-1;ei++) {
-				if(List.buffer.get(0).equals(List.rime.get(ei))){
+			if(List.rime.containsKey(List.buffer.get(0))){
 				bufr1=true;
-				}
-			//	else buf1=false;
-				
-			for (int ei2=0; ei2<=List.rime.size()-1;ei2++) {
-			if(List.buffer.get(1).equals(List.rime.get(ei2))) {
-			bufr2=true;
 			}
-		//	else buf2=false;
-		}
-	}
+			
+				
+			if(List.rime.containsKey(List.buffer.get(1))){
+				bufr2=true;
+			}
+		
+	
 		if((bufr1==true) && (bufr2==true)) {
 		bufr=true;
 		setArabicRime(false);
 	}
 return bufr;
 }
+	
+	 public  String ToRime(int mInt) {
+	    String[] rnChars = { "M",  "CM", "D", "C",  "XC", "L",  "X", "IX", "V", "I" };
+	    int[] rnVals = {  1000, 900, 500, 100, 90, 50, 10, 9, 5, 1 };
+	    String retVal = "";
+
+	    for (int i = 0; i < rnVals.length; i++) {
+	        int numberInPlace = mInt / rnVals[i];
+	        if (numberInPlace == 0) continue;
+	        retVal += numberInPlace == 4 && i > 0? rnChars[i] + rnChars[i - 1]:
+	            new String(new char[numberInPlace]).replace("\0",rnChars[i]);
+	        mInt = mInt % rnVals[i];
+	    }
+	    return retVal;
+	}
 	
 	
 }	

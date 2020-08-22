@@ -2,7 +2,6 @@ package testA;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class List {
@@ -20,27 +19,27 @@ public static void ArabIni() {
 }
 	
 	
-static	Map<Integer, String> rime = new HashMap<Integer, String>();
+static	Map<String, Integer> rime = new HashMap<String, Integer>();
 	
 	public static void RimeIni() {
 		
-		rime.put(1,"I");
-		rime.put(2,"II");
-		rime.put(3,"III");
-		rime.put(4,"IV");
-		rime.put(5,"V");
-		rime.put(6,"VI");
-		rime.put(7,"VII");
-		rime.put(8,"VIII");
-		rime.put(9,"IX");
-		rime.put(10,"X");
-		rime.put(40,"XL");
-		rime.put(50,"L");
-		rime.put(60,"LX");
-		rime.put(70,"LXX");
-		rime.put(80,"LXXX");
-		rime.put(90,"LXXXX");
-		rime.put(100,"C");
+		rime.put("I",1);
+		rime.put("II",2);
+		rime.put("III",3);
+		rime.put("IV",4);
+		rime.put("V",5);
+		rime.put("VI",6);
+		rime.put("VII",7);
+		rime.put("VIII",8);
+		rime.put("IX",9);
+		rime.put("X",10);
+		rime.put("XL",40);
+		rime.put("L",50);
+		rime.put("LX",60);
+		rime.put("LXX",70);
+		rime.put("LXXX",80);
+		rime.put("LXXXX",90);
+		rime.put("C",100);
 }
 
 	static	ArrayList <String> buffer = new ArrayList <String>();

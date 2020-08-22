@@ -2,8 +2,8 @@ package testA;
 
 public class Operation {
 
-	
-	public int ArabicOper(){
+		
+public int Oper(String buf0, String buf1){
 		
 		int result=0, result1=0, result2 = 0;
 		
@@ -15,9 +15,9 @@ public class Operation {
 			
 			System.out.println("AO+");
 			
-		result1=List.arab.indexOf(List.buffer.get(0));
+		result1=List.arab.indexOf(""+buf0);
 		System.out.println("result1="+result1);
-		result2=List.arab.indexOf(List.buffer.get(1));
+		result2=List.arab.indexOf(""+buf1);
 		System.out.println("result2="+result2);
 		result=result1+result2;
 			
@@ -27,9 +27,9 @@ public class Operation {
 		case 1:{//-
 			System.out.println("AO-");
 			
-			result1=List.arab.indexOf(List.buffer.get(0));
+			result1=List.arab.indexOf(""+buf0);
 			System.out.println("result1="+result1);
-			result2=List.arab.indexOf(List.buffer.get(1));
+			result2=List.arab.indexOf(""+buf1);
 			System.out.println("result2="+result2);
 			result=result1-result2;
 			
@@ -39,9 +39,9 @@ public class Operation {
 		case 2:{//*
 			System.out.println("AO*");
 			
-			result1=List.arab.indexOf(List.buffer.get(0));
+			result1=List.arab.indexOf(""+buf0);
 			System.out.println("result1="+result1);
-			result2=List.arab.indexOf(List.buffer.get(1));
+			result2=List.arab.indexOf(""+buf1);
 			System.out.println("result2="+result2);
 			result=result1*result2;
 			
@@ -51,9 +51,9 @@ public class Operation {
 		case 3:{// /
 			System.out.println("AO/");	
 			
-			result1=List.arab.indexOf(List.buffer.get(0));
+			result1=List.arab.indexOf(""+buf0);
 			System.out.println("result1="+result1);
-			result2=List.arab.indexOf(List.buffer.get(1));
+			result2=List.arab.indexOf(""+buf1);
 			System.out.println("result2="+result2);
 			result=result1/result2;
 			
