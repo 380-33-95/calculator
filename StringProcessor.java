@@ -61,17 +61,22 @@ public static int getKodOperation() {
 		
 	}
 	
-	public void VerefyOperation() {
+	public boolean VerefyOperation() throws OperationException {
+		boolean operationOk=false;
 		for(int io=0; io<=3; io++) {
 			if(-1!=getNum().indexOf(List.operation.get(io))) {
 			setKodOperation(io);
 			setMestoVStrokeOperation(getNum().indexOf(List.operation.get(getKodOperation())));
 			}
+			operationOk=true;
+			if(getMestoVStrokeOperation()<0){
+				throw new OperationException("разрешенные операции + - * /");
+			}
 		}
-		
+		return operationOk;
 	}
 
-	public boolean VerifyArabic() {
+	public boolean VerifyArabic() throws OperationException {
 		boolean buf=false, buf1=false, buf2=false;
 		
 		for (int ei=0; ei<=List.arab.size()-1;ei++) {
@@ -87,10 +92,24 @@ public static int getKodOperation() {
 		//	else buf2=false;
 		}
 	}
+	
 		if((buf1==true) && (buf2==true)) {
 		buf=true;
 		setArabicRime(true);
 	}
+	
+	if (((buf1==true)&&(buf2==false)) ||(buf1==false&&buf2==true)){
+		
+		if(List.arab.indexOf(""+List.buffer.get(0))*List.arab.indexOf(""+List.buffer.get(1))<0) {
+		System.out.println(">>>>>>>>>"+List.arab.indexOf(""+List.buffer.get(0))*List.arab.indexOf(""+List.buffer.get(1)));	
+			throw new OperationException("числа должны быть от 1 до 10 включительно");
+		}
+		else {
+			throw new OperationException("разрешены или только арабские или только римские цыфры");
+		}
+	}
+
+	
 return buf;
 }
 	
@@ -113,6 +132,7 @@ return buf;
 	}
 return bufr;
 }
+
 	
 	 public  String ToRime(int mInt) {
 	    String[] rnChars = { "M",  "CM", "D", "C",  "XC", "L",  "X", "IX", "V", "I" };
