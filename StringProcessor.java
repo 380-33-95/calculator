@@ -10,7 +10,7 @@ private	static String num;
 	}
 
 	public  void setNum(String num) {
-		this.num = num;
+		StringProcessor.num = num;
 	}
 	
 private static int kodOperation;
@@ -52,87 +52,60 @@ public static int getKodOperation() {
 	
 	public static void DeleteProbel() {
 	num=num.replace(" ","");
-		}
+	}
+	
+	
+	public boolean PoiskZnaka() throws OperationException {
+		boolean ZnakOk=false;
+		
+		for(int io=0; io<=3; io++) {
+							
+			if(-1!=getNum().indexOf(List.operation.get(io))) {
+			setKodOperation(io);
+			setMestoVStrokeOperation(getNum().indexOf(List.operation.get(getKodOperation())));
+			ZnakOk=true;
+			}
+			}
+		
+		if(!ZnakOk){
+				throw new OperationException("разрешенные операции + - * /");
+			}
+		return ZnakOk;
+	}
+	
 	
 	public void RasbivkaStroki() {
 		List.buffer.add(0, getNum().substring(0, getMestoVStrokeOperation()));
 		List.buffer.add(1, getNum().substring(getMestoVStrokeOperation()+1));
-		System.out.println("bufer1="+List.buffer.get(0)+" bufer2="+List.buffer.get(1));
-		
+	//	System.out.println("bufer1="+List.buffer.get(0)+" bufer2="+List.buffer.get(1));
+	
 	}
 	
-	public boolean VerefyOperation() throws OperationException {
-		boolean operationOk=false;
-		for(int io=0; io<=3; io++) {
-			if(-1!=getNum().indexOf(List.operation.get(io))) {
-			setKodOperation(io);
-			setMestoVStrokeOperation(getNum().indexOf(List.operation.get(getKodOperation())));
-			}
-			operationOk=true;
-			if(getMestoVStrokeOperation()<0){
-				throw new OperationException("разрешенные операции + - * /");
-			}
-		}
-		return operationOk;
-	}
-
-	public boolean VerifyArabic() throws OperationException {
-		boolean buf=false, buf1=false, buf2=false;
-		
-		for (int ei=0; ei<=List.arab.size()-1;ei++) {
-				if(List.buffer.get(0).equals(List.arab.get(ei))){
-				buf1=true;
+	
+	public boolean VerifyEnterNumber() throws OperationException{
+		boolean ven=false;
+				
+		if(List.arab.indexOf(List.buffer.get(0))>0 &&
+				(List.arab.indexOf(List.buffer.get(1))>0)) {
+				ven=true;
+				setArabicRime(true);
 				}
-			//	else buf1=false;
-				
-			for (int ei2=0; ei2<=List.arab.size()-1;ei2++) {
-			if(List.buffer.get(1).equals(List.arab.get(ei2))) {
-			buf2=true;
-			}
-		//	else buf2=false;
-		}
-	}
-	
-		if((buf1==true) && (buf2==true)) {
-		buf=true;
-		setArabicRime(true);
-	}
-	
-	if (((buf1==true)&&(buf2==false)) ||(buf1==false&&buf2==true)){
-		
-		if(List.arab.indexOf(""+List.buffer.get(0))*List.arab.indexOf(""+List.buffer.get(1))<0) {
-		System.out.println(">>>>>>>>>"+List.arab.indexOf(""+List.buffer.get(0))*List.arab.indexOf(""+List.buffer.get(1)));	
-			throw new OperationException("числа должны быть от 1 до 10 включительно");
-		}
-		else {
-			throw new OperationException("разрешены или только арабские или только римские цыфры");
-		}
-	}
-
-	
-return buf;
-}
-	
-	public boolean VerifyRime() {
-		boolean bufr=false, bufr1=false, bufr2=false;
-		
-			if(List.rime.containsKey(List.buffer.get(0))){
-				bufr1=true;
-			}
 			
-				
-			if(List.rime.containsKey(List.buffer.get(1))){
-				bufr2=true;
+		else {
+			if(List.rime.containsKey(List.buffer.get(0)) &&
+					List.rime.containsKey(List.buffer.get(1))) {
+					ven=true;
+					setArabicRime(false);
+					RimeConverter.ConvertToArabic();
+				}
 			}
-		
-	
-		if((bufr1==true) && (bufr2==true)) {
-		bufr=true;
-		setArabicRime(false);
-	}
-return bufr;
-}
+				
+		if(!ven) {throw new OperationException("разрешены или только арабские или только римские цыфры от 1 до 10 включительно");
+		}		
+		return ven;
+		}
 
+	
 	
 	 public  String ToRime(int mInt) {
 	    String[] rnChars = { "M",  "CM", "D", "C",  "XC", "L",  "X", "IX", "V", "I" };
@@ -143,9 +116,10 @@ return bufr;
 	        int numberInPlace = mInt / rnVals[i];
 	        if (numberInPlace == 0) continue;
 	        retVal += numberInPlace == 4 && i > 0? rnChars[i] + rnChars[i - 1]:
-	            new String(new char[numberInPlace]).replace("\0",rnChars[i]);
+	        new String(new char[numberInPlace]).replace("\0",rnChars[i]);
 	        mInt = mInt % rnVals[i];
 	    }
+	    
 	    return retVal;
 	}
 	

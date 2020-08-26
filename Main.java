@@ -14,18 +14,18 @@ public class Main extends StringProcessor
 
 		Scanner in = new Scanner(System.in);
 		System.out.printf("Input: \n");
+		System.out.println();
 		t.setNum( in.nextLine());
 
 		System.out.println();
 		System.out.printf("Output: \n");
-		//  System.out.printf(t.getNum()+" length= "+ t.getNum().length());
 		System.out.println();
 
 		in.close();
-		t.DeleteProbel();
+		StringProcessor.DeleteProbel();
 		
 		try{
-		t.VerefyOperation();
+		t.PoiskZnaka();
 		}
 		catch(OperationException eex){
 		System.out.println(eex.getMessage());
@@ -35,16 +35,18 @@ public class Main extends StringProcessor
 		t.RasbivkaStroki();
 
 		try{
-			t.VerifyArabic();
+	
+			t.VerifyEnterNumber();
 		}
 		catch(OperationException av){
 		System.out.println(av.getMessage());
 		System.exit(0);
 		}
 
+		
 		if(isArabicRime()) {
 			try {
-				System.out.println("Result arabic="+t.Oper(List.buffer.get(0), List.buffer.get(1)));
+				System.out.println(t.Oper(List.buffer.get(0), List.buffer.get(1)));
 			} catch (OperationException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
@@ -52,20 +54,12 @@ public class Main extends StringProcessor
 		}
 		else {
 			try {
-				System.out.println("Result rime="+t.ToRime(t.Oper(List.buffer.get(0), List.buffer.get(1))));
+				System.out.println(t.ToRime(t.Oper(List.buffer.get(0), List.buffer.get(1))));
 			} catch (OperationException e) {
 				System.out.println(e.getMessage());
 				System.exit(0);
 			}
 		}
-
-
-	//		RimeConverter.ConvertToArabic();
-	//		System.out.println("Result arabic="+t.Oper(List.buffer.get(0), List.buffer.get(1)));
-	//		System.out.println("Result rime="+t.ToRime(t.Oper(List.buffer.get(0), List.buffer.get(1))));
-	
-
-		//1/5  System.out.printf(t.getNum()+" length= "+ t.getNum().length());
 
 	}
 	

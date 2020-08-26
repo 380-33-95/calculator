@@ -16,7 +16,7 @@ public static void ArabIni() {
 		{
 				arab.add(ini,""+ini);
 		}
-}
+		}
 	
 	
 static	Map<String, Integer> rime = new HashMap<String, Integer>();

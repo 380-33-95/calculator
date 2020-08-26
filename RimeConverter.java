@@ -17,12 +17,7 @@ public class RimeConverter{
 		List.buffer.add(0, ""+rimeInd1);
 		List.buffer.add(1, ""+rimeInd2);
 		
-		System.out.println(rimeInd1 + " end " + rimeInd2);
-	}
-
-	public static void ConvertToRime() {
-		
 		
 	}
-	
+		
 	}
